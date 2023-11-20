@@ -7,18 +7,57 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <button class="squares">squares</button>
     <div id="canvas">
 
     </div>
 
     <script>
+        let grid;
+        let size;
+        let totalSize;
         const canvas = document.getElementById('canvas');
+        const button = document.querySelector('.squares');
 
-        canvas.addEventListener("mousedown", () => {
-            let dot = document.createElement('div');
-            dot.className = 'dot';
-            canvas.appendChild(dot);
-        })
+        function generateRandomColor() {
+            // Array of possible hexadecimal characters
+            const hexChars = '0123456789ABCDEF';
+            let colorCode = '#';
+
+            for (let i = 0; i < 6; i++) {
+                let randomIndex = Math.floor(Math.random() * hexChars.length);
+                colorCode += hexChars[randomIndex];
+            }
+            return colorCode;
+        }
+
+        button.addEventListener('click', () => {
+            size = prompt('enter number of squares per side of grid');
+            canvas.style.width = `${size}` + 'em';
+            canvas.style.height = `${size}` + 'em';
+            totalSize = (`${size}` * `${size}` + 1) ;
+
+            function griddy() {
+                //removes 'block' elements so they don't add to totalSize
+                while (canvas.firstChild) {
+                    canvas.removeChild(canvas.firstChild)
+                }
+                //adds 'block' elements = totalSize
+                for (let i = 1; i < `${totalSize}`;  i++) {
+                grid = document.createElement('div');
+                grid.className = 'block';
+                canvas.appendChild(grid);
+                }
+            }
+            griddy()
+            
+            const blocks = document.querySelectorAll('.block')
+            //changes color of 'block' elements
+            blocks.forEach((block) => 
+                block.addEventListener('mouseout', () => {
+                    block.style.backgroundColor = generateRandomColor();
+        }))})
+        
     </script>
 </body>
 </html>

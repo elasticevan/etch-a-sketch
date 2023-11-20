@@ -1,12 +1,25 @@
 #canvas {
+    display: flex;
+    flex-flow: wrap;
     background-color: bisque;
-    width : 32em;
-    height : 32em;
+
 }
 
-.dot {
-    height: 2em;
-    width: 2em;
-    background-color: red;
-    position: absolute;
+.block {
+    border: 0;
+    margin: 0;
+    display: flex;
+    justify-content: stretch;
+    align-items: stretch ;
+    flex: auto;
+    
+    width: 1em;
+    height: 1em;
+    background-color: red;   
+}
+
+.squares {
+    margin-left: 15em;
+    margin-bottom: 1em;
+    margin-top: 1em;
 }
